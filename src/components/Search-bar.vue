@@ -7,9 +7,12 @@
     placeholder="enter an
   url"
   />
-  <button @click="getUrl" type="submit" class="submit-url">Submit URL</button>
+  <button type="button" @click="getUrl" class="submit-url">Submit URL</button>
   <div class="glitch-wrapper">
     <div class="glitch" :data-glitch="shortenedLink">{{ shortenedLink }}</div>
+    <a @click="copyText" v-show="copyEnabled" href="/"
+      ><i class="fa-sharp fa-solid fa-copy"></i
+    ></a>
   </div>
 </template>
 
@@ -20,6 +23,7 @@ export default {
       apiKey: 'ee636b46538ac8bc95adaa5af4c1870dec6c65e6',
       input: '',
       shortenedLink: '',
+      copyEnabled: false,
     };
   },
   methods: {
@@ -39,6 +43,12 @@ export default {
       const data = await res.json();
       this.shortenedLink = data.link;
       this.input = '';
+      this.copyEnabled = true;
+    },
+    async copyText() {
+      let text = document.querySelector('.glitch').innerHTML;
+      await navigator.clipboard.writeText(text);
+      alert('copied text ' + text);
     },
   },
 };
@@ -87,7 +97,7 @@ input:focus::placeholder {
 }
 
 .glitch-wrapper {
-  margin-top: 10px;
+  margin-top: 20px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -115,16 +125,15 @@ input:focus::placeholder {
 }
 
 .glitch:before {
-  animation: glitch-color 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94) both
-    infinite;
+  animation: glitch-color 1s cubic-bezier(0.25, 0.46, 0.45, 0.94) both infinite;
   color: #0ff;
   z-index: -1;
 }
 
 .glitch:after {
-  animation: glitch-color 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94) reverse both
+  animation: glitch-color 1s cubic-bezier(0.25, 0.46, 0.45, 0.94) reverse both
     infinite;
-  color: #ff00ff;
+  color: #0084ff;
   z-index: -2;
 }
 
@@ -152,5 +161,10 @@ input:focus::placeholder {
   to {
     transform: translate(0);
   }
+}
+i {
+  font-size: 30px;
+  color: #0084ff78;
+  margin-left: 10px;
 }
 </style>
