@@ -9,10 +9,9 @@
   />
   <button type="button" @click="getUrl" class="submit-url">Submit URL</button>
   <div class="glitch-wrapper">
-    <div class="glitch" :data-glitch="shortenedLink">{{ shortenedLink }}</div>
-    <a @click="copyText" v-show="copyEnabled" href="/"
-      ><i class="fa-sharp fa-solid fa-copy"></i
-    ></a>
+    <div class="glitch" id="shortened-link" :data-glitch="shortenedLink">
+      {{ shortenedLink }}
+    </div>
   </div>
 </template>
 
@@ -22,8 +21,6 @@ export default {
     return {
       apiKey: 'ee636b46538ac8bc95adaa5af4c1870dec6c65e6',
       input: '',
-      shortenedLink: '',
-      copyEnabled: false,
     };
   },
   methods: {
@@ -44,11 +41,6 @@ export default {
       this.shortenedLink = data.link;
       this.input = '';
       this.copyEnabled = true;
-    },
-    async copyText() {
-      let text = document.querySelector('.glitch').innerHTML;
-      await navigator.clipboard.writeText(text);
-      alert('copied text ' + text);
     },
   },
 };
@@ -166,5 +158,14 @@ i {
   font-size: 30px;
   color: #0084ff78;
   margin-left: 10px;
+}
+button {
+  border: none;
+  cursor: pointer;
+  font-size: 30px;
+  margin-left: 20px;
+}
+i:hover {
+  transform: scale(0.9);
 }
 </style>

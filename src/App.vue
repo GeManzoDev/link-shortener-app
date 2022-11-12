@@ -1,16 +1,13 @@
 <template>
-  <HeadHeader></HeadHeader>
+  <h1>Link Shortener</h1>
   <div class="main">
     <SearchBar></SearchBar>
     <CopyButton></CopyButton>
   </div>
-  <FootFooter></FootFooter>
 </template>
 
 <script setup>
-import FootFooter from './components/Foot-footer.vue';
 import SearchBar from './components/Search-bar.vue';
-import HeadHeader from './components/Head-header.vue';
 import CopyButton from './components/Copy-button.vue';
 </script>
 
@@ -21,6 +18,12 @@ import CopyButton from './components/Copy-button.vue';
   box-sizing: border-box;
   font-family: 'Bebas Neue', cursive;
   background-color: aliceblue;
+}
+h1 {
+  text-align: center;
+  margin: 3rem;
+  color: cornflowerblue;
+  font-size: 40px;
 }
 .main {
   width: 50vw;
