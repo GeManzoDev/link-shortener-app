@@ -2,7 +2,6 @@
   <h1>Link Shortener</h1>
   <div class="main">
     <SearchBar></SearchBar>
-    <CopyButton></CopyButton>
   </div>
 </template>
 

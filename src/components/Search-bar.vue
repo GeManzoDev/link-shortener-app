@@ -12,15 +12,19 @@
     <div class="glitch" id="shortened-link" :data-glitch="shortenedLink">
       {{ shortenedLink }}
     </div>
+    <CopyButton v-if="copyEnabled"></CopyButton>
   </div>
 </template>
 
 <script>
+import CopyButton from './Copy-button.vue';
 export default {
   data() {
     return {
       apiKey: 'ee636b46538ac8bc95adaa5af4c1870dec6c65e6',
       input: '',
+      shortenedLink: '',
+      copyEnabled: false,
     };
   },
   methods: {
@@ -42,6 +46,9 @@ export default {
       this.input = '';
       this.copyEnabled = true;
     },
+  },
+  components: {
+    CopyButton,
   },
 };
 </script>
@@ -154,18 +161,11 @@ input:focus::placeholder {
     transform: translate(0);
   }
 }
-i {
-  font-size: 30px;
-  color: #0084ff78;
-  margin-left: 10px;
-}
+
 button {
   border: none;
   cursor: pointer;
   font-size: 30px;
   margin-left: 20px;
-}
-i:hover {
-  transform: scale(0.9);
 }
 </style>

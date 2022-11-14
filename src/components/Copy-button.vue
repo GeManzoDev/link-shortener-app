@@ -3,7 +3,6 @@
     class="btn"
     data-clipboard-target="#shortened-link"
     @click="copyText"
-    v-show="copyEnabled"
     type="button"
   >
     <i class="fa-sharp fa-solid fa-copy"></i>
@@ -13,13 +12,19 @@
 <script>
 export default {
   name: 'CopyButton',
-  data() {
-    return {
-      shortenedLink: '',
-      copyEnabled: false,
-    };
-  },
 };
 </script>
 
-<style lang="scss" scoped></style>
+<style scoped>
+* {
+  font-size: 12px;
+}
+i {
+  font-size: 30px;
+  color: #0084ff78;
+  margin-left: 10px;
+}
+i:hover {
+  transform: scale(0.9);
+}
+</style>
